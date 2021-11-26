@@ -9,23 +9,6 @@ const Header = (props) => {
   );
 };
 
-const Player = (props) => {
-  return (
-    <div className="player">
-      <span className="player-name">
-        <button
-          className="remove-player"
-          onClick={() => props.removePlayer(props.id)}
-        >
-          ✖
-        </button>
-        {props.name}
-      </span>
-      <Counter />
-    </div>
-  );
-};
-
 class Counter extends React.Component {
   state = {
     score: 0,
@@ -64,6 +47,24 @@ class Counter extends React.Component {
   }
 }
 
+const Player = (props) => {
+  return (
+    <div className="player">
+      <span className="player-name">
+        <button
+          className="remove-player"
+          onClick={() => props.removePlayer(props.id)}
+        >
+          ✖
+        </button>
+        {props.name}
+      </span>
+
+      <Counter />
+    </div>
+  );
+};
+
 class App extends React.Component {
   state = {
     players: [
@@ -98,13 +99,13 @@ class App extends React.Component {
     return (
       <div className="scoreboard">
         <Header title="Scoreboard" totalPlayers={this.state.players.length} />
+
         {/* Players list */}
         {this.state.players.map((player) => (
           <Player
             name={player.name}
             id={player.id}
-            score={player.score}
-            key={player.id}
+            key={player.id.toString()}
             removePlayer={this.handleRemovePlayer}
           />
         ))}
