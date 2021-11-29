@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Player from "./Player";
+import AddPlayerForm from "./AddPlayerForm";
 
 class App extends React.Component {
   state = {
@@ -60,6 +61,7 @@ class App extends React.Component {
             removePlayer={this.handleRemovePlayer}
           />
         ))}
+        <AddPlayerForm />
       </div>
     );
   }
