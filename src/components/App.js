@@ -58,7 +58,18 @@ class App extends React.Component {
     });
   };
 
+  getHighScore = () => {
+    const scores = this.state.players.map((p) => p.score);
+    const highScore = Math.max(...scores);
+    if (highScore) {
+      return highScore;
+    }
+    return null;
+  };
+
   render() {
+    const highScore = this.getHighScore();
+
     return (
       <div className="scoreboard">
         <Header players={this.state.players} />
@@ -68,6 +79,7 @@ class App extends React.Component {
           <Player
             name={player.name}
             score={player.score}
+            isHighScore={highScore === player.score}
             id={player.id}
             key={player.id.toString()}
             index={index}
